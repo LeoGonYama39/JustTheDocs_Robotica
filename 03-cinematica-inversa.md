@@ -18,7 +18,7 @@ En esta sección, se explicará y demsotrará la cinemática inversa de un UR5e 
 - [Inversa geométrica](#inversa-geométrica)
 - [Explicación de la rutina](#explicación-de-la-rutina)
 - [Demostración de la rutina](#demostración-de-la-rutina)
-
+- [Análisis](#análisis)
 
 ---
 
@@ -108,3 +108,14 @@ A continuación, un video de la rituna:
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/IgU2Fp70z3w" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
 </iframe>
+
+---
+
+## Análisis
+
+Después de haber visto la rutina funcionando, podemos concluir que:
+- Se logró hacer parte de una cadena de producción industrial, concretamente la parte de colocar las botellas en una caja.
+- El robot coloca las botellas de forma recta, sin ninguna inclinación en su rotación x o y.
+- Se evita que el robot colicione con algún objeto de la mesa de trabajo, como lo pueden ser botellas ya colocadas o la caja, y esto se logra siempre asegurándonos de que el robot se encuentre encima de la posición de la botella, antes y después de agarrar la botella.
+
+Pero todvía tendríamos un problema, y es que estamos completamente atados a las funciones `MoveJ` y `MoveL` de los robots UR, y como estos son de arquitectura cerrada, si queremos controlar la velocidad del EF (por ejemplo si queremos dejar las botellas en la caja de manera más delicada), tenemos que encontrar una manera de hacerlo mediante las funciones `MoveJ` y `MoveL`.
