@@ -14,6 +14,12 @@ En esta sección, se explicará y demsotrará la cinemática inversa de un UR5e 
 
 ## Contenido
 
+- [Obtención de matrices](#obtención-de-matrices)
+- [Inversa geométrica](#inversa-geométrica)
+- [Explicación de la rutina](#explicación-de-la-rutina)
+- [Demostración de la rutina](#demostración-de-la-rutina)
+
+
 ---
 
 ## Obtención de matrices
@@ -100,5 +106,5 @@ La rutina consiste en:
 
 A continuación, un video de la rituna:
 
-<iframe width="560" height="315" src="https://www.youtube.com/watch?v=IgU2Fp70z3w" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/IgU2Fp70z3w" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
 </iframe>
