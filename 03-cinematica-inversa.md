@@ -8,9 +8,9 @@ nav_order: 4
 
 > Proyecto de Leo González Yamada
 
-> Código `CI_proceso.m` del [repsitorio del proyecto](https://github.com/LeoGonYama39/JustTheDocs_Robotica).
+> Código `CI_proceso.m` del [repositorio del proyecto](https://github.com/LeoGonYama39/JustTheDocs_Robotica).
 
-En esta sección, se explicará y demsotrará la cinemática inversa de un UR5e efectuada en la aplicación industrial **Pick and Place** explicada en el inicio. 
+En esta sección, se explicará y demsotrará la **cinemática inversa** de un **UR5e** efectuada en la aplicación industrial Pick and Place explicada en el inicio. 
 
 ## Contenido
 
@@ -77,7 +77,7 @@ De esta forma, vamos obtieniendo cada una de las posiciones que queremos que rea
 
 ## Inversa geométrica
 
-Para la cinemática inversa, se usó la inversa geométrica, el cuál es un método que consiste en describir las posiciones de las articulaciones del robot mediante geometría, lo que traduce a senos y cosenos. Esto en un principio podría sonar a un mayor gasto de recursos computacionales, pero se usa este método por encima de otros como el **Método de Newton**, el cuál es *iterativo*, mientras que **inversa geométrica** son unos cálculos, sin iterar más de una vez.
+Para la cinemática inversa, se usó la **inversa geométrica**, el cuál es un método que consiste en describir las posiciones de las articulaciones del robot mediante geometría, lo que traduce a senos y cosenos. Esto en un principio podría sonar a un mayor gasto de recursos computacionales, pero se usa este método por encima de otros como el **Método de Newton**, el cuál es *iterativo*, mientras que **inversa geométrica** son unos cálculos, sin iterar más de una vez.
 
 Se utilizó el código de inversa geométrica del maestro **Julio Antonio Caballero Mora**, el cuál está integrado en el código de esta sección (`CI_proceso.m`).
 
@@ -88,19 +88,19 @@ A continuación, se muestral a estación de trabajo en RoboDK:
 
 La rutina consiste en:
 
-1. Se inicia siempre con el robot en la posoción de *home*.
-2. Se genera una botella.
-3. La botella se va moviento por la banda transportadora hasta llegar a una posición cercana al robot.
-4. El UR5e se mueve encima de la botella transportada, preparándose para agarrarla.
-5. El UR5e realiza un *MoveL* (movimiento sin cambiar la orientación del EF), de tal forma que el Gripper rodee a la botella.
-6. El Gripper agarra la botella.
-7. El UR5e vuelve a hacer un *MoveL* para regresar a la posición encima de la botella (pero con la botella agarrada).
+1. Se **inicia** siempre con el robot en la posoción de **home**.
+2. Se **genera** una **botella**.
+3. La **botella** se va **moviento** por la **banda transportadora** hasta llegar a una posición cercana al robot.
+4. El UR5e se mueve **encima de la botella** transportada, preparándose para agarrarla.
+5. El UR5e realiza un *MoveL* (movimiento sin cambiar la orientación del EF), de tal forma que el **Gripper rodee a la botella**.
+6. El Gripper **agarra** la **botella**.
+7. El UR5e vuelve a hacer un *MoveL* para **regresar** a la posición **encima** de la **botella** (pero con la botella agarrada).
 8. Si es la primera botella, el robot primero se mueve a la posición con la rotación alterna, demostrando que se pueden poner varias rotaciones al EF.
-9. El robot se mueve a la posición inicial de la botella correspondiente a dejar.
+9. El robot se **mueve** a la **posición inicial** de la botella correspondiente a dejar.
 10. El robot realiza un *MoveL* para dejar la botella en la caja.
-11. El Gripper suelta la botella.
-12. El UR5e regresa a la posición encima de la botella colocada.
-13. Si ya llenó la caja, el robot procede a moverse a su posición de *home*. sin embargo, si la caja no se ha llenado con las 10 botellas, se regresa al paso 2.
+11. El Gripper **suelta la botella**.
+12. El UR5e **regresa** a la posición **encima** de la **botella** colocada.
+13. Si ya **llenó** la caja, el robot procede a **regresarse** a su posición de *home*. sin embargo, si la caja no se ha llenado con las 10 botellas, se regresa al **paso 2**.
 
 ## Demostración de la rutina
 
@@ -114,8 +114,8 @@ A continuación, un video de la rituna:
 ## Análisis
 
 Después de haber visto la rutina funcionando, podemos concluir que:
-- Se logró hacer parte de una cadena de producción industrial, concretamente la parte de colocar las botellas en una caja.
-- El robot coloca las botellas de forma recta, sin ninguna inclinación en su rotación x o y.
-- Se evita que el robot colicione con algún objeto de la mesa de trabajo, como lo pueden ser botellas ya colocadas o la caja, y esto se logra siempre asegurándonos de que el robot se encuentre encima de la posición de la botella, antes y después de agarrar la botella.
+- Se logró hacer **parte de una cadena de producción industrial**, concretamente la parte de colocar las botellas en una caja.
+- El robot coloca las botellas de forma recta, **sin ninguna inclinación** en su rotación x o y.
+- Se **evita** que el robot **colicione** con algún objeto de la mesa de trabajo, como lo pueden ser botellas ya colocadas o la caja, y esto se logra siempre asegurándonos de que el robot se encuentre encima de la posición de la botella, antes y después de agarrar la botella.
 
-Pero todvía tendríamos un problema, y es que estamos completamente atados a las funciones `MoveJ` y `MoveL` de los robots UR, y como estos son de arquitectura cerrada, si queremos controlar la velocidad del EF (por ejemplo si queremos dejar las botellas en la caja de manera más delicada), tenemos que encontrar una manera de hacerlo mediante las funciones `MoveJ` y `MoveL`.
+Pero todvía tendríamos un problema, y es que estamos completamente atados a las funciones `MoveJ` y `MoveL` de los robots UR, y como estos son de **arquitectura cerrada**, si queremos controlar la **velocidad** del EF (por ejemplo si queremos dejar las botellas en la caja de manera más delicada), tenemos que encontrar una manera de hacerlo mediante las funciones `MoveJ` y `MoveL`.

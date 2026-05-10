@@ -8,9 +8,9 @@ nav_order: 3
 
 > Proyecto de Leo González Yamada
 
-> Código `UR5eCD.m` del [repsitorio del proyecto](https://github.com/LeoGonYama39/JustTheDocs_Robotica).
+> Código `UR5eCD.m` del [repositorio del proyecto](https://github.com/LeoGonYama39/JustTheDocs_Robotica).
 
-En esta sección, se explicará y demsotrará la **cinemática directa** de un **UR5e**. Como se explicó al inicio, la **cinemática directa** es fundamental para **cinemática inversa** y **control cinemático**, por lo que es importante tener el tema claro y hacerlo de forma inequívoca.
+En esta sección, se explicará y demsotrará la **cinemática directa** de un **UR5e**. Como se explicó al inicio, la cinemática directa es fundamental para **cinemática inversa** y **control cinemático**, por lo que es importante tener el tema claro y hacerlo de forma inequívoca.
 
 ## Contenido
 - [Método](#método)
@@ -26,7 +26,7 @@ Para el cálculo de la matriz homogénea de base al EF, se usó la siguiente for
 
 ![Matriz Denavit-Hatengerb](assets/img/matriz-DH.jpg)
 
-Pero, tenemos que tomar en cuenta a la herramienta como un nuevo eje, por lo que agregaremos un séptimo eje a los parámetros de DH:
+Pero, tenemos que tomar en cuenta a la herramienta como un nuevo eje, por lo que agregaremos un **séptimo eje** a los parámetros de DH:
 
 | **Eje** | **a [m]** | **d [m]** | **alpha [rad]** | **theta [rad]** |
 |:-------:|:---:|:--------:|:-----------:|:-----------:|
@@ -40,13 +40,13 @@ Por lo tanto, multiplicaremos 7 matrices homogéneas para obtener nuestra matriz
 
 Para la posición cartesiana del efector final, simplemente hay que obtener el **vector de traslación**. La posición *x* corresponderá al primer elemento del **vector de traslación**, o el elemento (4, 1) de la **matriz homogénea**, para *y*, segundo elemento del **vector de traslación** o (4, 2) de la **matriz homogénea**, y para *z*, tercer elemento del **vector de traslación** o el elemento (4, 3) de la **matriz homogénea**.
 
-> Para la comprobación con **RoboDK**, estos valores se multiplicaron por mil para representar los resultados en mm, debido a que **RoboDK** trabaja en mm y no en metros.
+> Para la comprobación con RoboDK, estos valores se multiplicaron por mil para representar los resultados en mm, debido a que RoboDK trabaja en mm y no en metros.
 
 ---
 
 ## Posición rotacional
 
-Si bien, hay varias maneras de representar la posición rotacional de una matriz homogénea, UR usa una representación especial llamada *eje-ángulo*, la cuál, consiste de representar las 3 rotaciones *rx*, *ry* y *rz* como:
+Si bien, hay varias maneras de representar la **posición rotacional** de una matriz homogénea, UR usa una representación especial llamada *eje-ángulo*, la cuál, consiste de representar las 3 rotaciones *rx*, *ry* y *rz* como:
 
 ```text
 r = u * theta
@@ -59,7 +59,7 @@ donde:
 
 Para el código, se usará la función `rotm2axang` del Add-On *Robotics System Toolbox*. Esta función recibe una matriz de rotación **R** y devuelve un vector con los 3 elementos del eje unitario de rotación (1:3), seguido del ángulo de rotación (4), por lo tanto, multiplicaremos el vector **u** con **theta** para obtener los ángulos **en radianes**.
 
-> Para la comprobación con **RoboDK**, estos valores se transformaron de radianes a grados con la función `rad2deg`, debido a que **RoboDK** trabaja con grados y no con radianes.
+> Para la comprobación con RoboDK, estos valores se transformaron de radianes a grados con la función `rad2deg`, debido a que RoboDK trabaja con grados y no con radianes.
 
 ---
 

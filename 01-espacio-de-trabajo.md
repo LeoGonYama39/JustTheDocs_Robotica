@@ -28,14 +28,14 @@ El **UR5e** es un robot colaborativo (cobot) perteneciente a la e-Series de Univ
 
 ![UR5e en RoboDK](assets/img/objRoboDK/UR5e-RoboDK.jpg)
 
-> [Modelo de **UR5e**](https://robodk.com/robot/es/Universal-Robots/UR5e) de la biblioteca de **RoboDK**.
+> [Modelo de **UR5e**](https://robodk.com/robot/es/Universal-Robots/UR5e) de la biblioteca de RoboDK.
 
 
 ### Caracterísitcas principales
 
 - **Grados de Libertad** (GDL): Cuenta con 6 articulaciones rotacionales, lo cuál, lo convierte en un robot **no redundante**, lo que significa que es capaz de maniobrar libremente en su espacio de trabajo de 6 dimenciones, que involucra 3 cartesianos (x, y z) y 3 rotacionales (rx, ry y rz).
 
-- **Capacidad de Carga y Alcance**: Es capaz de cargar 5 kg y cuenta con un radio de alcance de hasta 850 mm.
+- **Capacidad de Carga y Alcance**: Es capaz de cargar **5 kg** y cuenta con un radio de alcance de hasta **850 mm**.
 
 - **Precisión y Repetibilidad**: Ofrece una repetibilidad de pose de **±0.03 mm**, lo que garantiza que los cálculos de cinemática inversa se traduzcan en movimientos exactos y constantes.
 
@@ -79,49 +79,49 @@ El **SG-a Soft Gripper** de OnRobot es un sistema de sujeción flexible diseñad
 
 - **Adapta** sus dedos de silicona a la forma del objeto, permitiendo un agarre envolvente y uniforme.
 - **Dispositivo de grado alimenticio y farmacéutico**, por lo tanto, es ideal para la manipulación de botellas y envases, garantizando higiene y cumplimiento de normativas internacionales.
-- La **abrida** del gripper es de 10 mm hasta los 100 mm de diámetro, lo que otorga gran flexibilidad en celdas de manufactura con productos variados.
-- **Masa** de 0.938kg, dato importante para configurar el *payload* del **UR5e**.
+- El gripper puede abrirse desde los 10 mm de diámetro hasta los 100 mm, lo que otorga gran flexibilidad en celdas de manufactura con productos variados.
+- **Masa** de 0.938kg, dato importante para configurar el *payload* del UR5e.
 
 ![Gripper en RoboDK](assets/img/objRoboDK/gripper-RoboDK.jpg)
 
-> [Modelo de **OnRobot SG-a Soft Gripper**](https://robodk.com/tool/es/OnRobot-SG-a-Soft-Gripper) de la biblioteca de **RoboDK**.
+> [Modelo de **OnRobot SG-a Soft Gripper**](https://robodk.com/tool/es/OnRobot-SG-a-Soft-Gripper) de la biblioteca de RoboDK.
 
 ---
 
 ## Conveyor Belt Wide (2m)
 
-Este modelo simula una banda de transporte, la cuál es la que usaremos para mover nuestras botellas. Si bien, la banda se puede programar para mover objetos, en este caso, las botellas se moverán desde el código de **Matlab**, con funciones como `transl`, la cuál convierte un vector de 3 números *x*, *y* y *z* a una matriz homogénea, y `setPose`, la cuál mueve un objeto a la pose indicada por una matriz homogénea.
+Este modelo simula una **banda de transporte**, la cuál es la que usaremos para mover nuestras botellas. Si bien, la banda se puede programar para mover objetos, en este caso, las botellas se moverán desde el código de Matlab, con funciones como `transl`, la cuál convierte un vector de 3 números *x*, *y* y *z* a una matriz homogénea, y `setPose`, la cuál mueve un objeto a la pose indicada por una matriz homogénea.
 
 ![Banda en RoboDK](assets/img/objRoboDK/banda-RoboDK.jpg)
 
-> [Modelo **Conveyor Belt Wide (2m)**](https://robodk.com/object/es/Conveyor-Belt-Wide-2m) de la biblioteca de **RoboDK**.
+> [Modelo **Conveyor Belt Wide (2m)**](https://robodk.com/object/es/Conveyor-Belt-Wide-2m) de la biblioteca de RoboDK.
 
 ---
 
 ## Caja
 
-Modelo de **caja** utilizado de la biblioteca de **RoboDK**. Objeto donde se ordenarán las botellas.
+Modelo de **caja** utilizado de la biblioteca de RoboDK. Objeto donde se ordenarán las botellas.
 
 ![Caja en RoboDK](assets/img/objRoboDK/caja-RoboDK.jpg)
 
-> [Modelo de la **caja**](https://robodk.com/object/es/Box-20x12in-Open) de la biblioteca de **RoboDK**.
+> [Modelo de la **caja**](https://robodk.com/object/es/Box-20x12in-Open) de la biblioteca de RoboDK.
 
 ---
 
 ## Botella
 
-Modelo de **botella** utilizado de la biblioteca de **RoboDK**. Es el objeto a acomodar en la caja.
+Modelo de **botella** utilizado de la biblioteca de RoboDK. Es el objeto a acomodar en la caja.
 
 ![Botella en RoboDK](assets/img/objRoboDK/botella-RoboDK.jpg)
 
-> [Modelo de la **botella**](https://robodk.com/object/es/Bottle-Label) de la biblioteca de **RoboDK**.
+> [Modelo de la **botella**](https://robodk.com/object/es/Bottle-Label) de la biblioteca de RoboDK.
 
 ---
 
 ## Mesa de trabajo
 
-Modelo de **mesa de trabajo** utilizado de la biblioteca de **RoboDK**. En la mesa estará el **UR5e** y la caja con las botellas.
+Modelo de **mesa de trabajo** utilizado de la biblioteca de RoboDK. En la mesa estará el UR5e y la caja con las botellas.
 
 ![Mesa de trabajo en RoboDK](assets/img/objRoboDK/mesa-RoboDK.jpg)
 
-> [Modelo de la **mesa de trabajo**](https://robodk.com/object/es/Table-1400x800x800mm) de la biblioteca de **RoboDK**.
+> [Modelo de la **mesa de trabajo**](https://robodk.com/object/es/Table-1400x800x800mm) de la biblioteca de RoboDK.
