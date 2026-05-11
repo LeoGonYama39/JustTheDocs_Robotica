@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Cinemática Directa
+title: Cinemática directa
 nav_order: 3
 ---
 
