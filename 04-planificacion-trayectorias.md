@@ -19,6 +19,7 @@ Como se mencionó el el apartado anterior, al resolver el problema por pura cine
 - [Método eurístico](#método-eurístico)
 - [Polinomio quíntico](#polinomio-quíntico)
 - [Aplicación al problema](#aplicación-al-problema)
+- [Demostración de la rutina](#demostración-de-la-rutina)
 
 ---
 
@@ -63,13 +64,20 @@ Esto definirá la posición del EF respecto del tiempo. Para su cálculo, tendre
 
 ## Aplicación al problema
 
-En nuestro caso, regresándo al apartado anterior, mencionamos que en todos los tiempos delimitados por el método eurístico, lo que se hace es poner directamente la posición articular (calculada por la cinemática inversa) al robor para moverse a esa posición, por lo que no estamos variando la posición en el tiempo, solo estamos diciendo que en ese lapso de tiempo, tenga determinada posición.
+En nuestro caso, mencionamos que, en todos los tiempos delimitados por el método eurístico, lo que se hace es poner directamente la posición articular (calculada por la cinemática inversa) al robor para moverse a esa posición, por lo que no estamos variando la posición en el tiempo, solo estamos diciendo que en ese lapso de tiempo, tenga determinada posición.
 
 Sin embargo, si nos detenemos a ver la rutina desde 13 segundos a 16 segundos, es donde usamos el polinomio quíntico, donde la posición variará dependiendo del tiempo.
 
 Este es el paso en el que el EF se moverá linealmente en su eje *z* para poder colocar la botella, por lo tanto, sólo queremos ese movimiento suave del polinomio quíntico en el eje *z*, no en otros ejes. Por lo tanto, aplicaremos únicamente el polinomio quíntico en el eje *z*.
 
-> Si comparamos la función `getMatrizHomBotella` en el código anterior (`CI_proceso.m`) y el actual (`PlanTrayec_proceso.m`), podremos observar que en la matriz homogénea para la posición de colocación de la botella, mientras que en el código anterior hay un valor fijo, en el actual, se introduce el polinomio quíntico. 
+> Si comparamos la función `getMatrizHomBotella` en el código anterior (`CI_proceso.m`) y el actual (`PlanTrayec_proceso.m`), podremos observar que en la matriz homogénea para la posición de colocación de la botella, mientras que en el código anterior hay un valor fijo, en el actual, se introduce una ecuación respecto al tiempo. 
 
 Para el cálculo, usamos el código mencionado anteriormente (`poliQuint.m`), en donde calculamos el polinomio con z0 = 500.00 (posición en z del paso anterior) y zf = 230.00 (posición a la que quiero que se mueva en z desde z0).
 Para todas las velocidades y aceleraciones, indicaremos 0, ya que la velocidad y aceleración inicial es 0, y queremos que también lo sea la velocidad y aceleración final.
+
+## Demostración de la rutina
+
+A continuación, un video de la rituna:
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/y__e6M-BmEA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+</iframe>
