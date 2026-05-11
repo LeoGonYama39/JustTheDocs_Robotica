@@ -47,6 +47,4 @@ Este método nos permite mover el robot con una trayectoria *suave*, de manera *
 
 Este polinomio, como lo dice su nombre, es de quinto grado, por lo que tendremos la siguiente forma:
 
-<p>
-  \( x(t) = a_5t^5 + a_4t^4 + a_3t^3 + a_2t^2 + a_1t + a_0 \)
-</p>
+$$x(t) = a_5t^5 + a_4t^4 + a_3t^3 + a_2t^2 + a_1t + a_0$$
