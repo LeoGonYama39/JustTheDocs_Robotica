@@ -51,3 +51,7 @@ Es una técnica de control que permite satisfacer una pose deseada calculando la
 
 La fórmula es la siguiente:
 
+
+Para satisfacer la fórmula, veamos cómo se realizó en el código de esta sección:
+
+En la función `nombre_de_funcion.m`, se definen uno por uno 
