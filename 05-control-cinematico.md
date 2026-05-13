@@ -18,6 +18,7 @@ También, se usará el método de **ecuaciones paramétricas**, combinado nuevam
 
 - [Ecuaciones paramétricas](#ecuaciones-paramétricas)
 - [Control cinemático](#control-cinemático)
+- [Aplicación](#aplicación)
 
 ---
 
@@ -51,7 +52,48 @@ Es una técnica de control que permite satisfacer una pose deseada calculando la
 
 La fórmula es la siguiente:
 
+![Fórmula de control cinemático](/assets/img/control/formula_CC.jpg)
+
+Donde:
+
+- **q.:** perfiles de velocidad
+- **J:** Matriz Jacobiana
+    - Esta matriz jacobiana se forma tomando en cuenta las ecuaciones de cinemática directa como funciones, y cada articulación de *q* como un estado.
+- **Xd.:** Vector de velocidades cartesianas deseadas.
+- **K:** Vector de ganancias.
+- **X:** Vector de posiciones cartesianas actuales.
+- **Xd:** Vector de posiciones cartecianas deseadas.
+
+---
+
+## Aplicación
 
 Para satisfacer la fórmula, veamos cómo se realizó en el código de esta sección:
 
-En la función `nombre_de_funcion.m`, se definen uno por uno 
+En la función `CC_UR5e.m`, se definen una por una cada variable necesaria para el cálculo del perfil de velocidades.
+
+1. Definir la cinemática directa de *x*, *y* y *z*, pero a diferencia de la sección de cinemática directa visto en este proyecto, definiremos la cinemática en función de las posiciones articulares.
+
+2. Definir la matriz jacobiana. Para la primera fila, se deriva la primera función (cinemática directa de *x*) por cada posición articular. Por lo tanto, haremos 6 derivadas, y la misma lógica aplica para la segunda columna con *y* y tercera con *z*.
+
+3. Se calcula la inversa de la matriz Jacobiana, que es la matriz que se terminará usando para el cálculo de perfiles de velocidad.
+
+> Hay que tener en cuenta que, la inversa de una matriz solamente se puede calcular con una matriz cuadrada nxn, y como en este caso, nuestra matriz jacobiana es de 3x6, se usará la **pseudoinversa** de Moore-Penrose.
+
+4. Se fijan las posiciones deseadas. Este paso es importante, ya que nuevamente usaremos **planificación de trayectorias** con el método **Heurístico**. Como se hizo en la sección anterior, fijaremos posiciones específicas para un determinado tiempo. 
+    
+    - Para el intervalo de 10 a 20 segundos, se introduce en *x* y *y*, las ecuaciones paramétricas de un círculo de radio 0.1, con su centro en 0.2 tanto para *x* y *y*. Esto dibujará un circulo en el eje *x* y *y* en la altura de *z* = 0.543.
+
+5. Definir las velocidades deseadas. Para este punto, es importante entender que la velocidad es la derivada de la posición, por lo que simplemente vamos a derivar las posiciones deseadas fijadas en el punto anterior respecto a la variable de tiempo *t*. 
+
+    -Para todos los casos, la derivada sería de 0, devido a que los puntos que fijamos en el paso 4 son puntos fijos en el espacio, **a excepción** del intervalo 10 a 20 segundos. En este caso, derivamos las ecuaciones paramétricas del círculo, y para el mismo intervalo de 10 a 20 segundos, fijamos las velocidades de *x* y *y* como la derivada calculada.
+
+6. Fijar las ganancias del control. Es una ganancia por estado (*x*, *y* y *z*). Normalmente se fija 1.
+
+
+Esta función se pasará por un **método numérico iterativo** con el tiempo de simulación fijado, que en este caso es de 0 a 25 segundos, con intervalos de 0.1 segundos. 
+
+Esto nos arrojará un arreglo con todos los vectores **q** para cumplir nuestra trayectoria planificada. Esto se introducirá en un ciclo for, en donde mandaremos el cada vector **q** a nuestro robot UR5e en RoboDK, para comprobar el control cinemático.
+
+> Como en lo puntos anteriores, al trabajar con RoboDK, se tienen que pasar los ángulos en radianes a grados con la función `rad2deg`.
+
