@@ -19,6 +19,8 @@ También, se usará el método de **ecuaciones paramétricas**, combinado nuevam
 - [Ecuaciones paramétricas](#ecuaciones-paramétricas)
 - [Control cinemático](#control-cinemático)
 - [Aplicación](#aplicación)
+- [Demostración de la rutina](#demostración-de-la-rutina)
+- [Análisis](#análisis)
 
 ---
 
@@ -97,3 +99,19 @@ Esto nos arrojará un arreglo con todos los vectores **q** para cumplir nuestra 
 
 > Como en lo puntos anteriores, al trabajar con RoboDK, se tienen que pasar los ángulos en radianes a grados con la función `rad2deg`.
 
+---
+
+## Demostración de la rutina
+
+A continuación, un video del control cinemático en RoboDK:
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/UPhmXkkg74Y" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+</iframe>
+
+---
+
+## Análisis
+
+Después de ver el control cinemático en acción, podemos concluir varios puntos:
+
+- 
