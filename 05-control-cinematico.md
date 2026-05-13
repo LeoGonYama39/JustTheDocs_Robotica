@@ -114,4 +114,10 @@ A continuación, un video del control cinemático en RoboDK:
 
 Después de ver el control cinemático en acción, podemos concluir varios puntos:
 
-- 
+- El control cinemático es otra forma de resolver el problema de la definición de las articulaciones de un robot para satisfacer una posición. Y este modelo se puede extrapolar a un control no solamente cartesiano, si no también rotacional, simplemente calculando la cinemática directa de las 3 rotaciones *rx*, *ry* y *rz* (con todo lo que implicaría este cambio, que serían más componentes a la matriz jacobiana, más ganacias K, etc.)
+
+- A diferencia de la planificación de trayectorias con cinemática inversa, al usar el control cinemático, tenemos algo destacable, que es el hecho de que este tiene un movimiento más suave. Mientras que en la planeación con inversa, tenemos el movimiento en manos de las funciones de UR, en este caso, tenemos un mayor control del movimiento.
+
+- Lo mencionado anteriormente, en realidad puede conllevar un problema, y es lo que se comprueba en el video. En algunos fragmentos, el programa se pausa justo en el momento en el que ya debería de estar cumplida la posición deseada, sin embargo, esto no pasa en todos los instantes. Esto tiene una explicación y es que no lo estamos dando el tiempo suficiente al robot para moverse a esa posición. Esto se puede resolver aumentando las ganancias, pero esto también influirá en las posiciones que ya se cumplen a tiempo, y sin mencionar que podemos llegar a provocar un oscilamiento prolongado en la respuesta o hasta la desestabilización del sistema.
+
+- Este problema se puede resolver con algo ya conocido para este punto: **polinomio quíntico**. Como ya sabemos, este método nos permite modelar a detalle la respuesta que queremos ver en nuestro EF, incluyendo el tiempo de inicio y final de un movimiento. Por lo tanto, resolveríamos el problema que tiene el control cinemático, de no tener tiempo suficiente para resolver una posición. Una ventaja es que el polinomio quíntico, como vimos en la sección anterior, se puede implementar a una planificación de trayectorias por método Heurístico.
