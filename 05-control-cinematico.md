@@ -78,7 +78,7 @@ En la función `CC_UR5e.m`, se definen una por una cada variable necesaria para 
 
 3. Se calcula la inversa de la matriz Jacobiana, que es la matriz que se terminará usando para el cálculo de perfiles de velocidad.
 
-> Hay que tener en cuenta que, la inversa de una matriz solamente se puede calcular con una matriz cuadrada nxn, y como en este caso, nuestra matriz jacobiana es de 3x6, se usará la **pseudoinversa** de Moore-Penrose.
+    - Hay que tener en cuenta que, la inversa de una matriz solamente se puede calcular con una matriz cuadrada nxn, y como en este caso, nuestra matriz jacobiana es de 3x6, se usará la **pseudoinversa** de Moore-Penrose.
 
 4. Se fijan las posiciones deseadas. Este paso es importante, ya que nuevamente usaremos **planificación de trayectorias** con el método **Heurístico**. Como se hizo en la sección anterior, fijaremos posiciones específicas para un determinado tiempo. 
     
@@ -86,7 +86,7 @@ En la función `CC_UR5e.m`, se definen una por una cada variable necesaria para 
 
 5. Definir las velocidades deseadas. Para este punto, es importante entender que la velocidad es la derivada de la posición, por lo que simplemente vamos a derivar las posiciones deseadas fijadas en el punto anterior respecto a la variable de tiempo *t*. 
 
-    -Para todos los casos, la derivada sería de 0, devido a que los puntos que fijamos en el paso 4 son puntos fijos en el espacio, **a excepción** del intervalo 10 a 20 segundos. En este caso, derivamos las ecuaciones paramétricas del círculo, y para el mismo intervalo de 10 a 20 segundos, fijamos las velocidades de *x* y *y* como la derivada calculada.
+    - Para todos los casos, la derivada sería de 0, devido a que los puntos que fijamos en el paso 4 son puntos fijos en el espacio, **a excepción** del intervalo 10 a 20 segundos. En este caso, derivamos las ecuaciones paramétricas del círculo, y para el mismo intervalo de 10 a 20 segundos, fijamos las velocidades de *x* y *y* como la derivada calculada.
 
 6. Fijar las ganancias del control. Es una ganancia por estado (*x*, *y* y *z*). Normalmente se fija 1.
 
