@@ -74,23 +74,23 @@ Para satisfacer la fórmula, veamos cómo se realizó en el código de esta secc
 
 En la función `CC_UR5e.m`, se definen una por una cada variable necesaria para el cálculo del perfil de velocidades.
 
-1. Definir la cinemática directa de *x*, *y* y *z*, pero a diferencia de la sección de cinemática directa visto en este proyecto, definiremos la cinemática en función de las posiciones articulares.
+1. Definir la **cinemática directa** de *x*, *y* y *z*, pero a diferencia de la sección de cinemática directa visto en este proyecto, definiremos la cinemática en función de las posiciones articulares.
 
-2. Definir la matriz jacobiana. Para la primera fila, se deriva la primera función (cinemática directa de *x*) por cada posición articular. Por lo tanto, haremos 6 derivadas, y la misma lógica aplica para la segunda columna con *y* y tercera con *z*.
+2. Definir la **matriz jacobiana**. Para la primera fila, se deriva la primera función (cinemática directa de *x*) por cada posición articular. Por lo tanto, haremos 6 derivadas, y la misma lógica aplica para la segunda columna con *y* y tercera con *z*.
 
-3. Se calcula la inversa de la matriz Jacobiana, que es la matriz que se terminará usando para el cálculo de perfiles de velocidad.
+3. Se calcula la **inversa** de la matriz **Jacobiana**, que es la matriz que se terminará usando para el cálculo de perfiles de velocidad.
 
     - Hay que tener en cuenta que, la inversa de una matriz solamente se puede calcular con una matriz cuadrada nxn, y como en este caso, nuestra matriz jacobiana es de 3x6, se usará la **pseudoinversa** de Moore-Penrose.
 
-4. Se fijan las posiciones deseadas. Este paso es importante, ya que nuevamente usaremos **planificación de trayectorias** con el método **Heurístico**. Como se hizo en la sección anterior, fijaremos posiciones específicas para un determinado tiempo. 
+4. Se **fijan** las **posiciones deseadas**. Este paso es importante, ya que nuevamente usaremos **planificación de trayectorias** con el método **Heurístico**. Como se hizo en la sección anterior, fijaremos posiciones específicas para un determinado tiempo. 
     
     - Para el intervalo de 10 a 20 segundos, se introduce en *x* y *y*, las ecuaciones paramétricas de un círculo de radio 0.1, con su centro en 0.2 tanto para *x* y *y*. Esto dibujará un circulo en el eje *x* y *y* en la altura de *z* = 0.543.
 
-5. Definir las velocidades deseadas. Para este punto, es importante entender que la velocidad es la derivada de la posición, por lo que simplemente vamos a derivar las posiciones deseadas fijadas en el punto anterior respecto a la variable de tiempo *t*. 
+5. **Definir** las **velocidades deseadas**. Para este punto, es importante entender que la velocidad es la derivada de la posición, por lo que simplemente vamos a derivar las posiciones deseadas fijadas en el punto anterior respecto a la variable de tiempo *t*. 
 
     - Para todos los casos, la derivada sería de 0, devido a que los puntos que fijamos en el paso 4 son puntos fijos en el espacio, **a excepción** del intervalo 10 a 20 segundos. En este caso, derivamos las ecuaciones paramétricas del círculo, y para el mismo intervalo de 10 a 20 segundos, fijamos las velocidades de *x* y *y* como la derivada calculada.
 
-6. Fijar las ganancias del control. Es una ganancia por estado (*x*, *y* y *z*). Normalmente se fija 1.
+6. **Fijar** las **ganancias del control**. Es una ganancia por estado (*x*, *y* y *z*). Normalmente se fija 1.
 
 
 Esta función se pasará por un **método numérico iterativo** con el tiempo de simulación fijado, que en este caso es de 0 a 25 segundos, con intervalos de 0.1 segundos. 
@@ -114,10 +114,10 @@ A continuación, un video del control cinemático en RoboDK:
 
 Después de ver el control cinemático en acción, podemos concluir varios puntos:
 
-- El control cinemático es otra forma de resolver el problema de la definición de las articulaciones de un robot para satisfacer una posición. Y este modelo se puede extrapolar a un control no solamente cartesiano, si no también rotacional, simplemente calculando la cinemática directa de las 3 rotaciones *rx*, *ry* y *rz* (con todo lo que implicaría este cambio, que serían más componentes a la matriz jacobiana, más ganacias K, etc.)
+- El control cinemático es otra forma de resolver el problema de la definición de las articulaciones de un robot para **satisfacer una posición**. Y este modelo se puede extrapolar a un control no solamente cartesiano, si no también rotacional, simplemente calculando la cinemática directa de las 3 rotaciones *rx*, *ry* y *rz* (con todo lo que implicaría este cambio, que serían más componentes a la matriz jacobiana, más ganacias K, etc.)
 
-- A diferencia de la planificación de trayectorias con cinemática inversa, al usar el control cinemático, tenemos algo destacable, que es el hecho de que este tiene un movimiento más suave. Mientras que en la planeación con inversa, tenemos el movimiento en manos de las funciones de UR, en este caso, tenemos un mayor control del movimiento.
+- A diferencia de la planificación de trayectorias con cinemática inversa, al usar el control cinemático, tenemos algo destacable, que es el hecho de que este tiene un movimiento más suave. Mientras que en la planeación con inversa, tenemos el movimiento en manos de las funciones de UR, en este caso, tenemos un **mayor control del movimiento**.
 
-- Lo mencionado anteriormente, en realidad puede conllevar un problema, y es lo que se comprueba en el video. En algunos fragmentos, el programa se pausa justo en el momento en el que ya debería de estar cumplida la posición deseada, sin embargo, esto no pasa en todos los instantes. Esto tiene una explicación y es que no lo estamos dando el tiempo suficiente al robot para moverse a esa posición. Esto se puede resolver aumentando las ganancias, pero esto también influirá en las posiciones que ya se cumplen a tiempo, y sin mencionar que podemos llegar a provocar un oscilamiento prolongado en la respuesta o hasta la desestabilización del sistema.
+- Sin embargo, como se muestra en el video, en algunos fragmentos, el programa se pausa justo en el momento en el que ya debería de estar cumplida la posición deseada para comprobar la posición, y podemos observar que esto no pasa en todas las posiciones. Esto tiene una explicación y es que **no lo estamos dando el tiempo suficiente** al robot para moverse a esa posición. Esto se puede resolver **aumentando las ganancias**, pero esto también influirá en las posiciones que ya se cumplen a tiempo, y sin mencionar que podemos llegar a provocar un oscilamiento prolongado en la respuesta o hasta la desestabilización del sistema.
 
-- Este problema se puede resolver con algo ya conocido para este punto: **polinomio quíntico**. Como ya sabemos, este método nos permite modelar a detalle la respuesta que queremos ver en nuestro EF, incluyendo el tiempo de inicio y final de un movimiento. Por lo tanto, resolveríamos el problema que tiene el control cinemático, de no tener tiempo suficiente para resolver una posición. Una ventaja es que el polinomio quíntico, como vimos en la sección anterior, se puede implementar a una planificación de trayectorias por método Heurístico.
+- Este problema se puede resolver con algo ya conocido para este punto: **polinomio quíntico**. Como ya sabemos, este método nos permite modelar a detalle la respuesta que queremos ver en nuestro EF, incluyendo el **tiempo de inicio y final** de un movimiento. Por lo tanto, resolveríamos el problema que tiene el control cinemático, agregando un método que asegura el movimiento de punto A a B en un determinado tiempo. Una ventaja es que el polinomio quíntico, como vimos en la sección anterior, se puede implementar a una planificación de trayectorias por método Heurístico.
